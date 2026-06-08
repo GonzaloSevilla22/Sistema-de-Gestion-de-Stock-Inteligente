@@ -1,0 +1,281 @@
+Sistema de Gestión de Stock Inteligente
+
+Porque:
+
+Es simple de implementar.
+Tiene CRUD completo.
+Permite métricas y dashboard.
+Se puede desplegar fácilmente.
+Permite demostrar uso de IA agregando sugerencias automáticas de reposición.
+Arquitectura Recomendada
+Frontend
+React + TypeScript
+Vite
+TailwindCSS
+React Query
+Axios
+Backend
+FastAPI
+SQLAlchemy
+Pydantic
+SQLite (desarrollo)
+PostgreSQL (Render)
+Deploy
+
+Frontend:
+
+Vercel
+
+Backend:
+
+Render
+
+Base de datos:
+
+PostgreSQL gratuito de Render
+CI/CD
+
+GitHub Actions
+
+Cada push:
+
+GitHub
+    ↓
+Actions
+    ↓
+Tests
+    ↓
+Deploy automático
+Funcionalidades
+1. Dashboard
+
+Mostrar:
+
+Productos totales
+Stock total
+Productos con stock bajo
+Productos agotados
+
+Cards KPI:
+
++------------------+
+| Productos: 150   |
++------------------+
+
++------------------+
+| Stock Bajo: 8    |
++------------------+
+
++------------------+
+| Agotados: 2      |
++------------------+
+2. Gestión de Productos
+
+CRUD completo.
+
+Campos:
+
+id
+nombre
+descripcion
+categoria
+precio
+stock_actual
+stock_minimo
+fecha_creacion
+
+Operaciones:
+
+Crear
+Editar
+Eliminar
+Buscar
+3. Movimientos de Stock
+
+Registrar:
+
+Entrada:
+
++50 teclados
+
+Salida:
+
+-10 teclados
+
+Tabla:
+
+id
+producto_id
+tipo
+cantidad
+fecha
+observacion
+
+Tipos:
+
+ENTRADA
+SALIDA
+4. Alertas Automáticas
+
+Si:
+
+stock_actual <= stock_minimo
+
+Mostrar:
+
+⚠ Stock crítico
+5. IA (Puntos Fuertes para el TP)
+
+Acá ganás la parte de "Desarrollo asistido por IA".
+
+Endpoint:
+
+POST /ai/recommendation
+
+La IA recibe:
+
+{
+  "producto": "Teclado Logitech",
+  "stock_actual": 3,
+  "stock_minimo": 10
+}
+
+Y devuelve:
+
+Se recomienda reponer el producto dentro de las próximas 48 horas.
+
+Usar:
+
+Claude
+o
+Gemini API Free
+
+No hace falta algo complejo.
+
+Arquitectura Backend
+backend/
+│
+├── app/
+│
+├── api/
+│   ├── product_routes.py
+│   ├── movement_routes.py
+│   ├── dashboard_routes.py
+│   └── ai_routes.py
+│
+├── models/
+│   ├── product.py
+│   └── stock_movement.py
+│
+├── schemas/
+│   ├── product_schema.py
+│   └── movement_schema.py
+│
+├── repositories/
+│   ├── product_repository.py
+│   └── movement_repository.py
+│
+├── services/
+│   ├── product_service.py
+│   ├── movement_service.py
+│   ├── dashboard_service.py
+│   └── ai_service.py
+│
+├── database/
+│   ├── connection.py
+│   └── session.py
+│
+├── tests/
+│
+└── main.py
+Arquitectura Frontend
+frontend/
+│
+├── src/
+│
+├── pages/
+│   ├── Dashboard.tsx
+│   ├── Products.tsx
+│   └── StockMovements.tsx
+│
+├── components/
+│   ├── ProductTable.tsx
+│   ├── ProductForm.tsx
+│   ├── KPICards.tsx
+│   └── AlertList.tsx
+│
+├── services/
+│   ├── productApi.ts
+│   └── dashboardApi.ts
+│
+├── hooks/
+│
+└── App.tsx
+Modelo ER
+PRODUCT
+--------
+id
+name
+description
+price
+stock
+minimum_stock
+category
+
+STOCK_MOVEMENT
+--------------
+id
+product_id
+type
+quantity
+date
+observation
+
+Relación:
+
+Product 1 ----- N StockMovement
+Endpoints
+Productos
+GET /products
+
+GET /products/{id}
+
+POST /products
+
+PUT /products/{id}
+
+DELETE /products/{id}
+Movimientos
+GET /movements
+
+POST /movements
+Dashboard
+GET /dashboard
+
+Respuesta:
+
+{
+  "products": 150,
+  "low_stock": 8,
+  "out_of_stock": 2
+}
+IA
+POST /ai/recommendation
+GitHub Actions
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: npm install
+
+      - run: npm run build

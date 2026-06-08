@@ -1,0 +1,41 @@
+Actúa como un Software Architect Senior especializado en FastAPI, React, TypeScript y PostgreSQL.
+
+Genera un sistema completo de Gestión Inteligente de Stock con arquitectura profesional pero adecuada para un proyecto universitario.
+
+Requisitos:
+
+- Backend FastAPI
+- Frontend React + TypeScript + Vite
+- SQLAlchemy ORM
+- PostgreSQL
+- Arquitectura por capas:
+  - Routes
+  - Services
+  - Repositories
+  - Models
+  - Schemas
+
+Funcionalidades:
+
+1. Dashboard con KPIs:
+   - Productos totales
+   - Stock bajo
+   - Productos agotados
+
+2. CRUD de productos
+
+3. Registro de movimientos de stock
+
+4. Alertas de stock mínimo
+
+5. Endpoint IA que genere recomendaciones de reposición
+
+6. Tests unitarios
+
+7. Docker
+
+8. GitHub Actions
+
+9. README completo
+
+Genera el proyecto completo archivo por archivo respetando buenas prácticas SOLID y Clean Architecture.
