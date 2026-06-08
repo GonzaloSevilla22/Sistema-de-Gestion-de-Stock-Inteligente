@@ -101,14 +101,14 @@ export default function ProductForm({ product, onClose }: Props) {
   ) {
     return (
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-slate-700 mb-1.5">
           {label} {required && <span className="text-red-500">*</span>}
         </label>
         <input
           type={type}
           value={form[key]}
           onChange={(e) => setForm((f) => ({ ...f, [key]: e.target.value }))}
-          className={`w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 ${errors[key] ? 'border-red-400' : 'border-gray-300'}`}
+          className={`w-full border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all ${errors[key] ? 'border-red-400' : 'border-slate-200'}`}
           step={type === 'number' ? 'any' : undefined}
         />
         {errors[key] && <p className="text-red-500 text-xs mt-1">{errors[key]}</p>}
@@ -117,12 +117,17 @@ export default function ProductForm({ product, onClose }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-        <h2 className="text-lg font-semibold mb-4">
-          {product ? 'Editar producto' : 'Nuevo producto'}
-        </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+        <div className="px-6 py-5 border-b border-slate-100">
+          <h2 className="text-base font-bold text-slate-900">
+            {product ? 'Editar producto' : 'Nuevo producto'}
+          </h2>
+          <p className="text-sm text-slate-400 mt-0.5">
+            {product ? 'Modificá los datos del producto' : 'Completá los datos para agregar el producto'}
+          </p>
+        </div>
+        <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {field('Nombre', 'name', 'text', true)}
           {field('Descripción', 'description')}
           {field('Categoría', 'category')}
@@ -131,23 +136,23 @@ export default function ProductForm({ product, onClose }: Props) {
           {field('Stock mínimo', 'minimum_stock', 'number', true)}
 
           {apiError && (
-            <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded px-3 py-2">
+            <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-xl px-4 py-3">
               {apiError}
             </p>
           )}
 
-          <div className="flex justify-end gap-2 pt-2">
+          <div className="flex justify-end gap-3 pt-2">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded"
+              className="px-4 py-2.5 text-sm font-semibold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={isPending}
-              className="px-4 py-2 text-sm text-white bg-blue-600 hover:bg-blue-700 rounded disabled:opacity-50"
+              className="px-5 py-2.5 text-sm font-semibold text-white bg-primary hover:bg-blue-700 rounded-xl disabled:opacity-50 transition-colors"
             >
               {isPending ? 'Guardando…' : 'Guardar'}
             </button>

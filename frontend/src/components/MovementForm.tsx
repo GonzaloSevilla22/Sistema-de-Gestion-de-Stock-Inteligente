@@ -68,18 +68,21 @@ export default function MovementForm({ onClose }: Props) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-        <h2 className="text-lg font-semibold mb-4">Registrar movimiento</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+        <div className="px-6 py-5 border-b border-slate-100">
+          <h2 className="text-base font-bold text-slate-900">Registrar movimiento</h2>
+          <p className="text-sm text-slate-400 mt-0.5">Entrada o salida de stock</p>
+        </div>
+        <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               Producto <span className="text-red-500">*</span>
             </label>
             <select
               value={form.product_id}
               onChange={(e) => setForm((f) => ({ ...f, product_id: e.target.value }))}
-              className={`w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 ${errors.product_id ? 'border-red-400' : 'border-gray-300'}`}
+              className={`w-full border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all bg-white ${errors.product_id ? 'border-red-400' : 'border-slate-200'}`}
             >
               <option value="">Seleccioná un producto</option>
               {products.map((p) => (
@@ -94,7 +97,7 @@ export default function MovementForm({ onClose }: Props) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               Tipo <span className="text-red-500">*</span>
             </label>
             <select
@@ -102,7 +105,7 @@ export default function MovementForm({ onClose }: Props) {
               onChange={(e) =>
                 setForm((f) => ({ ...f, type: e.target.value as 'ENTRADA' | 'SALIDA' | '' }))
               }
-              className={`w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 ${errors.type ? 'border-red-400' : 'border-gray-300'}`}
+              className={`w-full border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all bg-white ${errors.type ? 'border-red-400' : 'border-slate-200'}`}
             >
               <option value="">Seleccioná el tipo</option>
               <option value="ENTRADA">ENTRADA</option>
@@ -112,7 +115,7 @@ export default function MovementForm({ onClose }: Props) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               Cantidad <span className="text-red-500">*</span>
             </label>
             <input
@@ -120,7 +123,7 @@ export default function MovementForm({ onClose }: Props) {
               min="1"
               value={form.quantity}
               onChange={(e) => setForm((f) => ({ ...f, quantity: e.target.value }))}
-              className={`w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 ${errors.quantity ? 'border-red-400' : 'border-gray-300'}`}
+              className={`w-full border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all ${errors.quantity ? 'border-red-400' : 'border-slate-200'}`}
             />
             {errors.quantity && (
               <p className="text-red-500 text-xs mt-1">{errors.quantity}</p>
@@ -128,12 +131,12 @@ export default function MovementForm({ onClose }: Props) {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Observación</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">Observación</label>
             <textarea
               value={form.observation}
               onChange={(e) => setForm((f) => ({ ...f, observation: e.target.value }))}
               rows={2}
-              className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+              className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all resize-none"
             />
           </div>
 
@@ -143,18 +146,18 @@ export default function MovementForm({ onClose }: Props) {
             </p>
           )}
 
-          <div className="flex justify-end gap-2 pt-2">
+          <div className="flex justify-end gap-3 pt-2">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800 border border-gray-300 rounded"
+              className="px-4 py-2.5 text-sm font-semibold text-slate-600 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors"
             >
               Cancelar
             </button>
             <button
               type="submit"
               disabled={createMutation.isPending}
-              className="px-4 py-2 text-sm text-white bg-blue-600 hover:bg-blue-700 rounded disabled:opacity-50"
+              className="px-5 py-2.5 text-sm font-semibold text-white bg-primary hover:bg-blue-700 rounded-xl disabled:opacity-50 transition-colors"
             >
               {createMutation.isPending ? 'Registrando…' : 'Registrar'}
             </button>
