@@ -7,7 +7,8 @@ import AlertList from '../components/AlertList'
 import AIRecommendationModal from '../components/AIRecommendationModal'
 
 export default function Products() {
-  const { data: products = [], isLoading, isError } = useProducts()
+  const { data: rawProducts, isLoading, isError } = useProducts()
+  const products = Array.isArray(rawProducts) ? rawProducts : []
   const deleteMutation = useDeleteProduct()
 
   const [search, setSearch] = useState('')

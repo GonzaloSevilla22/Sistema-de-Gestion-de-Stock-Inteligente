@@ -4,8 +4,10 @@ import { useProducts } from '../hooks/useProducts'
 import MovementForm from '../components/MovementForm'
 
 export default function StockMovements() {
-  const { data: movements = [], isLoading, isError } = useMovements()
-  const { data: products = [] } = useProducts()
+  const { data: rawMovements, isLoading, isError } = useMovements()
+  const movements = Array.isArray(rawMovements) ? rawMovements : []
+  const { data: rawProducts } = useProducts()
+  const products = Array.isArray(rawProducts) ? rawProducts : []
   const [formOpen, setFormOpen] = useState(false)
 
   const productName = (id: number) =>

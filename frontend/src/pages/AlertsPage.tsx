@@ -12,7 +12,8 @@ const STATUS_CONFIG: Record<Product['alert_status'], { label: string; dot: strin
 }
 
 export default function AlertsPage() {
-  const { data: products = [], isLoading } = useProducts()
+  const { data: rawProducts, isLoading } = useProducts()
+  const products = Array.isArray(rawProducts) ? rawProducts : []
   const [filter, setFilter] = useState<Filter>('all')
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
 

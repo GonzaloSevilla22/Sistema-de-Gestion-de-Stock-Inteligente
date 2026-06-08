@@ -3,7 +3,8 @@ import { useProducts } from '../hooks/useProducts'
 import { useAIRecommendation } from '../hooks/useAI'
 
 export default function AIAssistant() {
-  const { data: products = [] } = useProducts()
+  const { data: rawProducts } = useProducts()
+  const products = Array.isArray(rawProducts) ? rawProducts : []
   const { mutate, isPending, data, error, reset } = useAIRecommendation()
   const [selectedId, setSelectedId] = useState<string>('')
 

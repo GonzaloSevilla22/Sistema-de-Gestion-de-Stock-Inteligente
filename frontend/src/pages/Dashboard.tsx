@@ -36,7 +36,8 @@ function formatCurrency(value: number): string {
 
 export default function Dashboard() {
   const { data, isLoading, isError } = useDashboard()
-  const { data: products = [] } = useProducts()
+  const { data: rawProducts } = useProducts()
+  const products = Array.isArray(rawProducts) ? rawProducts : []
 
   const totalValue = products.reduce((sum, p) => sum + p.price * p.stock, 0)
 

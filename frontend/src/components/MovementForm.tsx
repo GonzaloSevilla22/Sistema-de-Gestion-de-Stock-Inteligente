@@ -23,7 +23,8 @@ const empty: FormData = {
 }
 
 export default function MovementForm({ onClose }: Props) {
-  const { data: products = [] } = useProducts()
+  const { data: rawProducts } = useProducts()
+  const products = Array.isArray(rawProducts) ? rawProducts : []
   const createMutation = useCreateMovement()
 
   const [form, setForm] = useState<FormData>(empty)
