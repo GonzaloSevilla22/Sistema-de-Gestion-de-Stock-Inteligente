@@ -30,6 +30,10 @@ jobs:
           mkdir -p frontend/.vercel
           echo '{"orgId":"gonzalo-s-projects-90d73f87","projectId":"prj_QIPQRNvrBYe9oAjrz7NbFucWhBWZ"}' > frontend/.vercel/project.json
 
+      - name: Pull Vercel project settings
+        working-directory: frontend
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
       - name: Build with Vercel
         working-directory: frontend
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
