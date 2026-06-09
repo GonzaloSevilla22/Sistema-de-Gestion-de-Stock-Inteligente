@@ -51,7 +51,7 @@
 - **Productos** — CRUD completo con búsqueda, badges de estado (Disponible / Stock Bajo / Agotado) y alertas automáticas.
 - **Movimientos de Stock** — Registro de entradas y salidas con historial ordenado.
 - **Alertas** — Panel dedicado con filtros por tipo de alerta y acceso rápido al asistente IA.
-- **Asistente IA** — Recomendaciones de reposición generadas por Claude (Anthropic) para productos con stock crítico.
+- **Asistente IA** — Recomendaciones de reposición generadas por ChatGPT (OpenIA) para productos con stock crítico.
 
 ---
 
