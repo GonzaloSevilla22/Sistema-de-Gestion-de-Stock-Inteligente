@@ -196,6 +196,12 @@ docker-compose up --build
 
 ---
 
+## Informe Técnico
+
+La experiencia de desarrollo con IA está documentada en [`INFORME_TECNICO.md`](./INFORME_TECNICO.md): herramientas utilizadas, metodología, debugging en producción y lecciones aprendidas.
+
+---
+
 ## Autores
 
 **Gonzalo Sevilla** **Lucas Norton** **Lorenzo Espetxe** **Geronimo Guevara** · TP Integrador
