@@ -17,6 +17,12 @@ import app.models.stock_movement  # noqa: F401 — registers StockMovement with 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     Base.metadata.create_all(bind=engine)
+    try:
+        from seed import run_seed  # noqa: PLC0415
+        run_seed()
+    except Exception as exc:
+        import logging
+        logging.getLogger(__name__).warning("Seed skipped: %s", exc)
     yield
 
 
