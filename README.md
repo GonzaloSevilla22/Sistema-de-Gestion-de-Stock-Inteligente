@@ -196,6 +196,6 @@ docker-compose up --build
 
 ---
 
-## Autor
+## Autores
 
-**Gonzalo Sevilla** · TP Integrador
+**Gonzalo Sevilla** **Lucas Norton** **Lorenzo Espetxe** **Geronimo Guevara** · TP Integrador
